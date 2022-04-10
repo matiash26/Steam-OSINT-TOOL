@@ -1,4 +1,5 @@
-(https://raw.githubusercontent.com/matiash26/Steam-OSINT-TOOL/main/img/23.png)
+![steam-osint](https://raw.githubusercontent.com/devanshbatham/ParamSpider/master/static/banner.PNG)
+
 # Steam-OSINT-TOOL
 ## 1. installing on linux:
  ```
