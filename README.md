@@ -7,6 +7,7 @@ The app will show you the closest friends you are looking for, but use it carefu
 ## 1. installing on linux:
  ```
  $ git clone https://github.com/matiash26/Steam-OSINT-TOOL.git
+ $ pip install -r requirements.txt
  $ cd /Steam-OSINT-TOOL-main/
  ```
  
