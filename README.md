@@ -1,7 +1,9 @@
-![steam-osint](https://raw.githubusercontent.com/matiash26/Steam-OSINT-TOOL/main/img/23.png)
+![steam-osint](https://raw.githubusercontent.com/matiash26/Steam-OSINT-TOOL/main/img/banner.png)
 
 # About
-The app will show you the closest friends you are looking for, but use it carefully and see "the interactions / comments" this indicates that it may be closer
+This tool will help to show who are her closest friends who possibly will also be outside of steam
+- get your steam token from the link below and click on the button "Go to Registration page"
+- [steam Token](https://steamcommunity.com/dev)
 
 # Steam-OSINT-TOOL
 ## 1. installing on linux:
@@ -14,6 +16,6 @@ The app will show you the closest friends you are looking for, but use it carefu
  
 ## 2.run the program
  ```
- $ python steam_osint.py
+ $ python main.py
  ```
 
