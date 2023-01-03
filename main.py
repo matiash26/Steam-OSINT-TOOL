@@ -43,10 +43,8 @@ while True:
                 print(f'[+] \033[92m{each["profile"]}\n Accuracy: {percentage(each["accuracy"])}% \033[m \n')
     except:
         print("\033[31m check if friends list is public, steamID is valid  or Token \033[m \n")
-    keeping = str(input("do you wish to STOP?: [Y] \n"))
-    if keeping in "yY":
-        idProfile = str(input("STEAM ID: "))
-    else:
+    keeping = str(input("do you wish to STOP?: [Y] \n")).capitalize()
+    if keeping == "Y":
         break;
-
-
+    else:
+        idProfile = str(input("STEAM ID: "))
