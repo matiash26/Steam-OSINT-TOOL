@@ -2,6 +2,7 @@ from osint import Osint
 
 steam = Osint()
 total = 0
+
 def percentage(value):
     return round((value / total) * 100)
 print("""

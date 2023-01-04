@@ -1,13 +1,15 @@
 import requests
+import threading
 import json
 
 class Osint:
     def __init__(self):
         self.steamID = ""
         self.token = ""
-        self.myFriendsID = []
+        self.myFriends = []
         self.allFriends = []
         self.closeFriend = []
+        self.threads = []
 
     def scanProfile(self, steamID, token):
         self.token = token
@@ -15,9 +17,9 @@ class Osint:
         self._friendsByFriends()
         self._setCloseFriends()
 
-    def get_friends(self, id):
-        steamAPI = f"http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={self.token}&steamid={id}"
-        request = requests.get(steamAPI)
+    def get_friends(self, steamID):
+        scanProfile = f'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={self.token}&steamid={steamID}'
+        request = requests.get(scanProfile)
         friends = json.loads(request.content)
         if(friends):
             return friends["friendslist"]["friends"]
@@ -25,21 +27,30 @@ class Osint:
     def _allMyFriends(self, steamID):
         for friend in self.get_friends(steamID):
             if(len(friend)):
-                self.myFriendsID.append(friend["steamid"])
+                self.myFriends.append(friend["steamid"])
 
     def _friendsByFriends(self):
-        for eachMyFriend in self.myFriendsID:
-           hisFriends = self.get_friends(eachMyFriend)
-           if(hisFriends):
-            for friendByFriend in hisFriends:
-                self.allFriends.append(friendByFriend["steamid"])
-
+        for url in self.myFriends:
+            threadURL = f'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={self.token}&steamid={url}'
+            thread = threading.Thread(target=self._threads, args=(threadURL,))
+            self.threads.append(thread)
+        for thread in self.threads:
+            thread.start()    
+        for thread in self.threads:
+            thread.join()
+            
     def _setCloseFriends(self):
-        for myFriend in self.myFriendsID:
+        for myFriend in self.myFriends:
             if(myFriend in set(self.allFriends)):
                 self.closeFriend.append({
                 "profile":f"https://steamcommunity.com/profiles/{myFriend}/", 
                 "accuracy": self.allFriends.count(myFriend)})
-
+    def _threads(self, steamURL):
+        requestThreads = requests.get(steamURL)
+        friends = json.loads(requestThreads.content)
+        if(friends):
+            for friendOFfriend in friends["friendslist"]["friends"]:
+                self.allFriends.append(friendOFfriend['steamid'])
+        
     def closeFriends(self):
         return self.closeFriend
