@@ -1,10 +1,7 @@
 from osint import Osint
 
 steam = Osint()
-total = 0
 
-def percentage(value):
-    return round((value / total) * 100)
 print("""
 :'######::'########:'########::::'###::::'##::::'##:
 '##... ##:... ##..:: ##.....::::'## ##::: ###::'###:
@@ -29,6 +26,10 @@ print("\033[31mwarning: friend list must be public  \033[m \n")
 token = str(input("TOKEN: "))
 idProfile = str(input("STEAM ID: "))
 
+total = 0
+def percentage(value):
+    return round((value / total) * 100)
+
 while True:
     try:
         scan = steam.scanProfile(idProfile, token)
@@ -49,3 +50,5 @@ while True:
         break;
     else:
         idProfile = str(input("STEAM ID: "))
+    steam.clearList()
+    total = 0
