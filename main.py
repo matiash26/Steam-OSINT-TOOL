@@ -49,6 +49,6 @@ while True:
     if keeping == "Y":
         break;
     else:
-        idProfile = str(input("STEAM ID: "))
+        idProfile = str(input("STEAM ID64: "))
     steam.clearList()
     total = 0
