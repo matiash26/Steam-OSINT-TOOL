@@ -4,6 +4,7 @@
 This tool will help to show who are her closest friends who possibly will also be outside of steam
 - get your steam token from the link below and click on the button "Go to Registration page"
 - [steam Token](https://steamcommunity.com/dev)
+- [copy steamID64](https://steamcommunity.com/dev)
 
 # Steam-OSINT-TOOL
 ## 1. installing on linux:
