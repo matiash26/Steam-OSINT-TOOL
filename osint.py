@@ -28,7 +28,6 @@ class Osint:
         for friend in self.get_friends(steamID):
             if(len(friend)):
                 self.myFriends.append(friend["steamid"])
-
     def _threads(self):
         for url in self.myFriends:
             threadURL = f'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={self.token}&steamid={url}'
@@ -38,6 +37,7 @@ class Osint:
             thread.start()    
         for thread in self.threads:
             thread.join()
+            
     def _friendsByFriends(self, steamURL):
         requestThreads = requests.get(steamURL)
         friends = json.loads(requestThreads.content)
@@ -50,8 +50,10 @@ class Osint:
                 self.closeFriend.append({
                 "profile":f"https://steamcommunity.com/profiles/{myFriend}/", 
                 "accuracy": self.allFriends.count(myFriend)})
-        return self.closeFriend
 
+    def showFriends(self):
+        return self.closeFriend
+    
     def clearList(self):
         self.steamID = ""
         self.myFriends = []

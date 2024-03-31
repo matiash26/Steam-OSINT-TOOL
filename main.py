@@ -33,10 +33,10 @@ def percentage(value):
 while True:
     try:
         scan = steam.scanProfile(idProfile, token)
-        for eachClose in steam.closeFriends():
+        for eachClose in steam.showFriends():
             if eachClose["accuracy"] > total:
                 total = eachClose["accuracy"]
-        for each in steam.closeFriends():
+        for each in steam.showFriends():
             if percentage(each["accuracy"]) >= 10 and percentage(each["accuracy"]) < 25:
                 print(f'[+] \033[31m{each["profile"]}\n Accuracy: {percentage(each["accuracy"])}% \033[m \n')
             elif percentage(each["accuracy"]) >= 25 and percentage(each["accuracy"]) < 50:
